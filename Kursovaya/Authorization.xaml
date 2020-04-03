@@ -14,11 +14,15 @@
                 <TextBlock HorizontalAlignment="Center"  FontSize="25" Margin="5, 5 ,5 20" Foreground="White"> Добро пожаловать</TextBlock>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Margin="5" Foreground="White" >Логин:</TextBlock>
-                    <TextBox Margin="5" Width="150" Name="TextBoxLogin"></TextBox>
+                    <Border CornerRadius="5" Name="BorderLastName"  BorderThickness="1" Margin="5" BorderBrush="Black" Width="150">
+                        <TextBox Margin="5" Width="150" Name="TextBoxLogin"></TextBox>
+                    </Border>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Margin="5" Foreground="White" >Пароль:</TextBlock>
-                    <PasswordBox Margin="5" Width="150" Name="PasswordBox"></PasswordBox>
+                    <Border CornerRadius="5" Name="BorderLastName1"  BorderThickness="1" Margin="5" BorderBrush="Black" Width="150">
+                        <PasswordBox Margin="5" Width="150" Name="PasswordBox"></PasswordBox>
+                    </Border>
                 </StackPanel>
                 
                 <Button Content="Войти" Width="100" Click="Button_Click" Cursor="Hand"></Button>
