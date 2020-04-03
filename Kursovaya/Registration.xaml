@@ -48,7 +48,7 @@
                 <Image Source="Image/Name.png" Height="40" Width="40" ></Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5"   HorizontalAlignment="Center" >
-                <Button Grid.Row="3" Name="OK"  Click="OK_Click" FontSize="15"  Margin="5"  >
+                <Button Grid.Row="3" Name="OK"  Click="OK_Click" FontSize="15"  Margin="5" Width="235"  >
                     <Button.Template>
                         <ControlTemplate>
                             <Border Background="Black" HorizontalAlignment="Right"  CornerRadius="5" Width="200"   BorderThickness="2" BorderBrush="Black">
