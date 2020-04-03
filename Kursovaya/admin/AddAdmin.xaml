@@ -13,35 +13,35 @@
 
             <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right" >
                 <TextBlock Text="Логин:" Margin="5"></TextBlock>
-                <Border CornerRadius="5" BorderThickness="4" Margin="5" BorderBrush="Black" Width="250" Name="BorderLogin">
+                <Border CornerRadius="5" BorderThickness="4" Margin="5" BorderBrush="Blue" Width="250" Name="BorderLogin">
                     <TextBox Name="Login" TextChanged="Login_TextChanged"></TextBox>
                 </Border>
                 <Image  Height="40" Width="40" Source="/Kursovaya;component/Image/Login.png" ></Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
                 <TextBlock Text="Пароль:" Margin="5"></TextBlock>
-                <Border Name="BorderPassword" CornerRadius="5" BorderThickness="4" Margin="5" BorderBrush="Black" Width="250">
+                <Border Name="BorderPassword" CornerRadius="5" BorderThickness="4" Margin="5" BorderBrush="Blue" Width="250">
                     <TextBox Name="Password" TextChanged="Password_TextChanged"></TextBox>
                 </Border>
                 <Image  Height="40" Width="40" Source="/Kursovaya;component/Image/Password.png"  ></Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
                 <TextBlock Text="Номер телефона:" Margin="5"></TextBlock>
-                <Border Name="BorderPhoneNumber" CornerRadius="5" BorderThickness="4" Margin="5" BorderBrush="Black" Width="250">
+                <Border Name="BorderPhoneNumber" CornerRadius="5" BorderThickness="4" Margin="5" BorderBrush="Blue" Width="250">
                     <TextBox Name="PhoneNumber" TextChanged="PhoneNumber_TextChanged"></TextBox>
                 </Border>
                 <Image  Height="40" Width="40" Source="/Kursovaya;component/Image/Phone_Number.png" ></Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
                 <TextBlock Text="Имя:" Margin="5"></TextBlock>
-                <Border CornerRadius="5" Name="BorderName" BorderThickness="4" Margin="5" BorderBrush="Black" Width="250">
+                <Border CornerRadius="5" Name="BorderName" BorderThickness="4" Margin="5" BorderBrush="Blue" Width="250">
                     <TextBox Name="Name" TextChanged="Name_TextChanged"></TextBox>
                 </Border>
                 <Image  Height="40" Width="40" Source="/Kursovaya;component/Image/Name.png" ></Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
                 <TextBlock Text="Фамилия:" Margin="5"></TextBlock>
-                <Border CornerRadius="5" Name="BorderLastName"  BorderThickness="4" Margin="5" BorderBrush="Black" Width="250">
+                <Border CornerRadius="5" Name="BorderLastName"  BorderThickness="4" Margin="5" BorderBrush="Blue" Width="250">
                     <TextBox Name="LastName"  TextChanged="LastName_TextChanged"></TextBox>
                 </Border>
                 <Image  Height="40" Width="40" Source="/Kursovaya;component/Image/Name.png"  ></Image>
