@@ -9,7 +9,7 @@ namespace Kursovaya
 {
     class AppData
     {
-        public static Frame MainFrame;
+        public static Frame Mainframe;
         public static Frame MenuFrame;
         public static Branch_pharmacy_KorolevEntities context = new Branch_pharmacy_KorolevEntities();
     }
