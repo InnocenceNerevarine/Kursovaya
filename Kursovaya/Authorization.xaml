@@ -1,0 +1,31 @@
+﻿<Page x:Class="Kursovaya.Authorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursovaya"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="250"
+      Title="Authorization">
+
+    <Grid>
+        <Grid Width="250"  HorizontalAlignment="Left" Grid.Column="0"  Background="#FF222222">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center"  FontSize="25" Margin="5, 5 ,5 20" Foreground="White"> Добро пожаловать</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Margin="5" Foreground="White" >Логин:</TextBlock>
+                    <TextBox Margin="5" Width="150" Name="TextBoxLogin"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Margin="5" Foreground="White" >Пароль:</TextBlock>
+                    <PasswordBox Margin="5" Width="150" Name="PasswordBox"></PasswordBox>
+                </StackPanel>
+                
+                <Button Content="Войти" Width="100" Click="Button_Click" Cursor="Hand"></Button>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</Page>

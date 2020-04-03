@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="04e6a600d4be4401963d9e0d6986e50f" Name="Diagram1" ZoomLevel="34">
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Application_Product" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Category_Product" Width="1.5" PointX="0.75" PointY="9.875" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.City" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Home" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Pharmcy" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Product" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Role" Width="1.5" PointX="0.75" PointY="15.125" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Strit" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.User" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Warning" Width="1.5" PointX="0.75" PointY="12.25" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Application_Product_Pharmcy" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Application_Product_Product" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Application_Product_User" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Product_Category_Product1" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_City" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_Home" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_Strit" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Product_Warning" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_User_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

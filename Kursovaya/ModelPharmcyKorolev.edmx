@@ -1,0 +1,729 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Branch_pharmacy_KorolevModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application_Product">
+          <Key>
+            <PropertyRef Name="ID_Application" />
+          </Key>
+          <Property Name="ID_Application" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="ID_Pharmacy" Type="int" Nullable="false" />
+          <Property Name="ID_Product" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category_Product">
+          <Key>
+            <PropertyRef Name="ID_Category" />
+          </Key>
+          <Property Name="ID_Category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID_City" />
+          </Key>
+          <Property Name="ID_City" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Home">
+          <Key>
+            <PropertyRef Name="ID_Home" />
+          </Key>
+          <Property Name="ID_Home" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Home_Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pharmcy">
+          <Key>
+            <PropertyRef Name="ID_Pharmacy" />
+          </Key>
+          <Property Name="ID_Pharmacy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_City" Type="int" Nullable="false" />
+          <Property Name="ID_Strit" Type="int" Nullable="false" />
+          <Property Name="ID_Home" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID_Product" />
+          </Key>
+          <Property Name="ID_Product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Product" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ID_Category" Type="int" Nullable="false" />
+          <Property Name="Contry_Manufacture" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Warning" Type="int" Nullable="false" />
+          <Property Name="Composition" Type="text" />
+          <Property Name="Sescription" Type="text" />
+          <Property Name="Indicatioin" Type="text" />
+          <Property Name="Contraindication" Type="text" />
+          <Property Name="Method_of_application" Type="text" />
+          <Property Name="Photo" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Recucle_bin">
+          <Key>
+            <PropertyRef Name="id_payproduct" />
+          </Key>
+          <Property Name="id_payproduct" Type="int" Nullable="false" />
+          <Property Name="ID_Product" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Strit">
+          <Key>
+            <PropertyRef Name="ID_Strit" />
+          </Key>
+          <Property Name="ID_Strit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Home_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone_Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Warning">
+          <Key>
+            <PropertyRef Name="ID_Warning" />
+          </Key>
+          <Property Name="ID_Warning" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Warning_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Application_Product_Pharmcy">
+          <End Role="Pharmcy" Type="Self.Pharmcy" Multiplicity="1" />
+          <End Role="Application_Product" Type="Self.Application_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmcy">
+              <PropertyRef Name="ID_Pharmacy" />
+            </Principal>
+            <Dependent Role="Application_Product">
+              <PropertyRef Name="ID_Pharmacy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Product_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Application_Product" Type="Self.Application_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_Product" />
+            </Principal>
+            <Dependent Role="Application_Product">
+              <PropertyRef Name="ID_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Product_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Application_Product" Type="Self.Application_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Application_Product">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmcy_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Pharmcy" Type="Self.Pharmcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID_City" />
+            </Principal>
+            <Dependent Role="Pharmcy">
+              <PropertyRef Name="ID_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmcy_Home">
+          <End Role="Home" Type="Self.Home" Multiplicity="1" />
+          <End Role="Pharmcy" Type="Self.Pharmcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Home">
+              <PropertyRef Name="ID_Home" />
+            </Principal>
+            <Dependent Role="Pharmcy">
+              <PropertyRef Name="ID_Home" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmcy_Strit">
+          <End Role="Strit" Type="Self.Strit" Multiplicity="1" />
+          <End Role="Pharmcy" Type="Self.Pharmcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strit">
+              <PropertyRef Name="ID_Strit" />
+            </Principal>
+            <Dependent Role="Pharmcy">
+              <PropertyRef Name="ID_Strit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category_Product1">
+          <End Role="Category_Product" Type="Self.Category_Product" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Product">
+              <PropertyRef Name="ID_Category" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Warning">
+          <End Role="Warning" Type="Self.Warning" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warning">
+              <PropertyRef Name="ID_Warning" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Id_Warning" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Branch_pharmacy_KorolevModelContainer">
+          <EntitySet Name="Application_Product" EntityType="Self.Application_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category_Product" EntityType="Self.Category_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Home" EntityType="Self.Home" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pharmcy" EntityType="Self.Pharmcy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recucle_bin" EntityType="Self.Recucle_bin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Strit" EntityType="Self.Strit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warning" EntityType="Self.Warning" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Application_Product_Pharmcy" Association="Self.FK_Application_Product_Pharmcy">
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+            <End Role="Application_Product" EntitySet="Application_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Product_Product" Association="Self.FK_Application_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Application_Product" EntitySet="Application_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Product_User" Association="Self.FK_Application_Product_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application_Product" EntitySet="Application_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmcy_City" Association="Self.FK_Pharmcy_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmcy_Home" Association="Self.FK_Pharmcy_Home">
+            <End Role="Home" EntitySet="Home" />
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmcy_Strit" Association="Self.FK_Pharmcy_Strit">
+            <End Role="Strit" EntitySet="Strit" />
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category_Product1" Association="Self.FK_Product_Category_Product1">
+            <End Role="Category_Product" EntitySet="Category_Product" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Warning" Association="Self.FK_Product_Warning">
+            <End Role="Warning" EntitySet="Warning" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Branch_pharmacy_KorolevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Branch_pharmacy_KorolevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Application_Product" EntityType="Branch_pharmacy_KorolevModel.Application_Product" />
+          <EntitySet Name="Category_Product" EntityType="Branch_pharmacy_KorolevModel.Category_Product" />
+          <EntitySet Name="City" EntityType="Branch_pharmacy_KorolevModel.City" />
+          <EntitySet Name="Home" EntityType="Branch_pharmacy_KorolevModel.Home" />
+          <EntitySet Name="Pharmcy" EntityType="Branch_pharmacy_KorolevModel.Pharmcy" />
+          <EntitySet Name="Product" EntityType="Branch_pharmacy_KorolevModel.Product" />
+          <EntitySet Name="Role" EntityType="Branch_pharmacy_KorolevModel.Role" />
+          <EntitySet Name="Strit" EntityType="Branch_pharmacy_KorolevModel.Strit" />
+          <EntitySet Name="User" EntityType="Branch_pharmacy_KorolevModel.User" />
+          <EntitySet Name="Warning" EntityType="Branch_pharmacy_KorolevModel.Warning" />
+          <AssociationSet Name="FK_Application_Product_Pharmcy" Association="Branch_pharmacy_KorolevModel.FK_Application_Product_Pharmcy">
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+            <End Role="Application_Product" EntitySet="Application_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Product_Product" Association="Branch_pharmacy_KorolevModel.FK_Application_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Application_Product" EntitySet="Application_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Application_Product_User" Association="Branch_pharmacy_KorolevModel.FK_Application_Product_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Application_Product" EntitySet="Application_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category_Product1" Association="Branch_pharmacy_KorolevModel.FK_Product_Category_Product1">
+            <End Role="Category_Product" EntitySet="Category_Product" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmcy_City" Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmcy_Home" Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_Home">
+            <End Role="Home" EntitySet="Home" />
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pharmcy_Strit" Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_Strit">
+            <End Role="Strit" EntitySet="Strit" />
+            <End Role="Pharmcy" EntitySet="Pharmcy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Warning" Association="Branch_pharmacy_KorolevModel.FK_Product_Warning">
+            <End Role="Warning" EntitySet="Warning" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Branch_pharmacy_KorolevModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <EntitySet Name="Recucle_bin" EntityType="Branch_pharmacy_KorolevModel.Recucle_bin" />
+          <EntitySet Name="sysdiagrams" EntityType="Branch_pharmacy_KorolevModel.sysdiagrams" />
+        </EntityContainer>
+        <EntityType Name="Application_Product">
+          <Key>
+            <PropertyRef Name="ID_Application" />
+          </Key>
+          <Property Name="ID_Application" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pharmacy" Type="Int32" Nullable="false" />
+          <Property Name="ID_Product" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pharmcy" Relationship="Branch_pharmacy_KorolevModel.FK_Application_Product_Pharmcy" FromRole="Application_Product" ToRole="Pharmcy" />
+          <NavigationProperty Name="Product" Relationship="Branch_pharmacy_KorolevModel.FK_Application_Product_Product" FromRole="Application_Product" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="Branch_pharmacy_KorolevModel.FK_Application_Product_User" FromRole="Application_Product" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Category_Product">
+          <Key>
+            <PropertyRef Name="ID_Category" />
+          </Key>
+          <Property Name="ID_Category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Branch_pharmacy_KorolevModel.FK_Product_Category_Product1" FromRole="Category_Product" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID_City" />
+          </Key>
+          <Property Name="ID_City" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pharmcy" Relationship="Branch_pharmacy_KorolevModel.FK_Pharmcy_City" FromRole="City" ToRole="Pharmcy" />
+        </EntityType>
+        <EntityType Name="Home">
+          <Key>
+            <PropertyRef Name="ID_Home" />
+          </Key>
+          <Property Name="ID_Home" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Home_Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pharmcy" Relationship="Branch_pharmacy_KorolevModel.FK_Pharmcy_Home" FromRole="Home" ToRole="Pharmcy" />
+        </EntityType>
+        <EntityType Name="Pharmcy">
+          <Key>
+            <PropertyRef Name="ID_Pharmacy" />
+          </Key>
+          <Property Name="ID_Pharmacy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_City" Type="Int32" Nullable="false" />
+          <Property Name="ID_Strit" Type="Int32" Nullable="false" />
+          <Property Name="ID_Home" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application_Product" Relationship="Branch_pharmacy_KorolevModel.FK_Application_Product_Pharmcy" FromRole="Pharmcy" ToRole="Application_Product" />
+          <NavigationProperty Name="City" Relationship="Branch_pharmacy_KorolevModel.FK_Pharmcy_City" FromRole="Pharmcy" ToRole="City" />
+          <NavigationProperty Name="Home" Relationship="Branch_pharmacy_KorolevModel.FK_Pharmcy_Home" FromRole="Pharmcy" ToRole="Home" />
+          <NavigationProperty Name="Strit" Relationship="Branch_pharmacy_KorolevModel.FK_Pharmcy_Strit" FromRole="Pharmcy" ToRole="Strit" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID_Product" />
+          </Key>
+          <Property Name="ID_Product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Product" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ID_Category" Type="Int32" Nullable="false" />
+          <Property Name="Contry_Manufacture" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Warning" Type="Int32" Nullable="false" />
+          <Property Name="Composition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Indicatioin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contraindication" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Method_of_application" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Application_Product" Relationship="Branch_pharmacy_KorolevModel.FK_Application_Product_Product" FromRole="Product" ToRole="Application_Product" />
+          <NavigationProperty Name="Category_Product" Relationship="Branch_pharmacy_KorolevModel.FK_Product_Category_Product1" FromRole="Product" ToRole="Category_Product" />
+          <NavigationProperty Name="Warning" Relationship="Branch_pharmacy_KorolevModel.FK_Product_Warning" FromRole="Product" ToRole="Warning" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Branch_pharmacy_KorolevModel.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Strit">
+          <Key>
+            <PropertyRef Name="ID_Strit" />
+          </Key>
+          <Property Name="ID_Strit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Home_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pharmcy" Relationship="Branch_pharmacy_KorolevModel.FK_Pharmcy_Strit" FromRole="Strit" ToRole="Pharmcy" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application_Product" Relationship="Branch_pharmacy_KorolevModel.FK_Application_Product_User" FromRole="User" ToRole="Application_Product" />
+          <NavigationProperty Name="Role" Relationship="Branch_pharmacy_KorolevModel.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Warning">
+          <Key>
+            <PropertyRef Name="ID_Warning" />
+          </Key>
+          <Property Name="ID_Warning" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Warning_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Branch_pharmacy_KorolevModel.FK_Product_Warning" FromRole="Warning" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Application_Product_Pharmcy">
+          <End Type="Branch_pharmacy_KorolevModel.Pharmcy" Role="Pharmcy" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Application_Product" Role="Application_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmcy">
+              <PropertyRef Name="ID_Pharmacy" />
+            </Principal>
+            <Dependent Role="Application_Product">
+              <PropertyRef Name="ID_Pharmacy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Product_Product">
+          <End Type="Branch_pharmacy_KorolevModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Application_Product" Role="Application_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID_Product" />
+            </Principal>
+            <Dependent Role="Application_Product">
+              <PropertyRef Name="ID_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Application_Product_User">
+          <End Type="Branch_pharmacy_KorolevModel.User" Role="User" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Application_Product" Role="Application_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID_User" />
+            </Principal>
+            <Dependent Role="Application_Product">
+              <PropertyRef Name="ID_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category_Product1">
+          <End Type="Branch_pharmacy_KorolevModel.Category_Product" Role="Category_Product" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Product">
+              <PropertyRef Name="ID_Category" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ID_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmcy_City">
+          <End Type="Branch_pharmacy_KorolevModel.City" Role="City" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Pharmcy" Role="Pharmcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID_City" />
+            </Principal>
+            <Dependent Role="Pharmcy">
+              <PropertyRef Name="ID_City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmcy_Home">
+          <End Type="Branch_pharmacy_KorolevModel.Home" Role="Home" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Pharmcy" Role="Pharmcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Home">
+              <PropertyRef Name="ID_Home" />
+            </Principal>
+            <Dependent Role="Pharmcy">
+              <PropertyRef Name="ID_Home" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pharmcy_Strit">
+          <End Type="Branch_pharmacy_KorolevModel.Strit" Role="Strit" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Pharmcy" Role="Pharmcy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strit">
+              <PropertyRef Name="ID_Strit" />
+            </Principal>
+            <Dependent Role="Pharmcy">
+              <PropertyRef Name="ID_Strit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Warning">
+          <End Type="Branch_pharmacy_KorolevModel.Warning" Role="Warning" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warning">
+              <PropertyRef Name="ID_Warning" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Id_Warning" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Type="Branch_pharmacy_KorolevModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="Branch_pharmacy_KorolevModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Recucle_bin">
+          <Key>
+            <PropertyRef Name="id_payproduct" />
+          </Key>
+          <Property Name="id_payproduct" Type="Int32" Nullable="false" />
+          <Property Name="ID_Product" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Branch_pharmacy_KorolevModelContainer" CdmEntityContainer="Branch_pharmacy_KorolevEntities">
+          <EntitySetMapping Name="Application_Product">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Application_Product">
+              <MappingFragment StoreEntitySet="Application_Product">
+                <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+                <ScalarProperty Name="ID_Pharmacy" ColumnName="ID_Pharmacy" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID_Application" ColumnName="ID_Application" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_Product">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Category_Product">
+              <MappingFragment StoreEntitySet="Category_Product">
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Home">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Home">
+              <MappingFragment StoreEntitySet="Home">
+                <ScalarProperty Name="Home_Name" ColumnName="Home_Name" />
+                <ScalarProperty Name="ID_Home" ColumnName="ID_Home" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pharmcy">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Pharmcy">
+              <MappingFragment StoreEntitySet="Pharmcy">
+                <ScalarProperty Name="ID_Home" ColumnName="ID_Home" />
+                <ScalarProperty Name="ID_Strit" ColumnName="ID_Strit" />
+                <ScalarProperty Name="ID_City" ColumnName="ID_City" />
+                <ScalarProperty Name="ID_Pharmacy" ColumnName="ID_Pharmacy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Method_of_application" ColumnName="Method_of_application" />
+                <ScalarProperty Name="Contraindication" ColumnName="Contraindication" />
+                <ScalarProperty Name="Indicatioin" ColumnName="Indicatioin" />
+                <ScalarProperty Name="Sescription" ColumnName="Sescription" />
+                <ScalarProperty Name="Composition" ColumnName="Composition" />
+                <ScalarProperty Name="Id_Warning" ColumnName="Id_Warning" />
+                <ScalarProperty Name="Contry_Manufacture" ColumnName="Contry_Manufacture" />
+                <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name_Product" ColumnName="Name_Product" />
+                <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Strit">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Strit">
+              <MappingFragment StoreEntitySet="Strit">
+                <ScalarProperty Name="Home_Name" ColumnName="Home_Name" />
+                <ScalarProperty Name="ID_Strit" ColumnName="ID_Strit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warning">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Warning">
+              <MappingFragment StoreEntitySet="Warning">
+                <ScalarProperty Name="Warning_Name" ColumnName="Warning_Name" />
+                <ScalarProperty Name="ID_Warning" ColumnName="ID_Warning" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recucle_bin">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.Recucle_bin">
+              <MappingFragment StoreEntitySet="Recucle_bin">
+                <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+                <ScalarProperty Name="id_payproduct" ColumnName="id_payproduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Branch_pharmacy_KorolevModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="3d4a6007d5b84a88a12fcd078ac4a059" Name="Diagram1">
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Application_Product" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Category_Product" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.City" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Home" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Pharmcy" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Product" Width="1.5" PointX="3.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Role" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Strit" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.User" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Warning" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Application_Product_Pharmcy" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Application_Product_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Application_Product_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Product_Category_Product1" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_City" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_Home" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Pharmcy_Strit" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_Product_Warning" ManuallyRouted="false" />
+        <AssociationConnector Association="Branch_pharmacy_KorolevModel.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.Recucle_bin" Width="1.5" PointX="6.875" PointY="9.375" />
+        <EntityTypeShape EntityType="Branch_pharmacy_KorolevModel.sysdiagrams" Width="1.5" PointX="8.875" PointY="9.375" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
