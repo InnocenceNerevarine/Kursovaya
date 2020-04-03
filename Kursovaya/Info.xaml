@@ -35,7 +35,7 @@
         </StackPanel>
         <StackPanel  HorizontalAlignment="Right" Margin="10" Grid.Column="1">
             <Image Source="Image/logo.png"  Height="300" Width="300" Stretch="Fill" ></Image>
-            <TextBlock  Margin="10" TextWrapping="Wrap" Foreground="Black">Если вы еще не зарегистрированы в нашем приложении, то сделайте это прямо сейчас</TextBlock>
+            <TextBlock  Margin="10" TextWrapping="Wrap" Foreground="Black">Если вы еще не зарегистрировались, то не упустите свой шанс !</TextBlock>
 
             <Button Margin="5" Grid.Row="3" Name="Registration" Click="Registration_Click" FontSize="15" HorizontalContentAlignment="Center"  >
                 <Button.Template>
